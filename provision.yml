@@ -10,7 +10,7 @@
         image: ami-cd0f5cb6
         ec2_url: ec2.us-east-1.amazonaws.com
         region: us-east-1
-        vpc_subnet_id: subnet-5f698206
+        vpc_subnet_id: subnet-0fdf0944
         wait: yes
         count: 1
         assign_public_ip: yes
