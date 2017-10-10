@@ -5,7 +5,7 @@
     - name: Provisionamento EC2
       ec2:
         key_name: aws-lucas
-        group: ansible
+        group: principal
         instance_type: t2.micro
         image: ami-cd0f5cb6
         ec2_url: ec2.us-east-1.amazonaws.com
