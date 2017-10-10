@@ -14,4 +14,5 @@
         wait: yes
         count: 1
         assign_public_ip: yes
+	instance_tags: name:jenkins2
       register: ec2
