@@ -8,9 +8,9 @@
     vars:
       instance_type: t2.micro
       security_group: jenkins
-      image: ami-90438cea
+      image: ami-15458b6f
       region: us-east-1
-      keypair: aws-lucas #substituir para a chave que for necessária
+      keypair: aws-lucas #substituir para a chave que for utilizar
       count: 1
 
    
