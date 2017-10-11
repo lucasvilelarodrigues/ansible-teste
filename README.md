@@ -1,6 +1,6 @@
 ##Projeto de Automação NodeJS
 
-Foi utilizado, Ansible para automação, instâncias LInux e AWS service.
+Foi utilizado, Ansible para automação, instâncias Linux e AWS service.
 
 O projeto consiste em duas receitas, uma para provisionamento do Jenkins e outra para provisionamento da instância que vai deve rodar a aplicação.
 
@@ -8,4 +8,3 @@ Na primeira, provision_jenkins.yaml, é feito a criação da instância do Jenki
 
 A segunda receita, provision_instance.yaml, provisiona uma instância para o serviço nodejs, com um SecurityGroup próprio chamado webserver, e adiciona o IP no arquivo "hosts" para poder executar a task de instalação e configuração da aplicação. A task que é feito o include, webserver.yaml, executa a configuração da aplicação, instala os aplicativos que são necessários, faz o clone do repositório e então executa o NPM INSTALL e START, para que a aplicação suba respondendo na porta 8080. 
 
-Esse é o resumo da automação que criei.
