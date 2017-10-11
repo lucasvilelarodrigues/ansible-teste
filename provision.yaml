@@ -63,3 +63,6 @@
                       port=22 
                       state=started
         with_items: "{{ ec2.instances }}"
+
+- include_role:
+    name: jenkins
