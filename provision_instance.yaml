@@ -7,8 +7,8 @@
     tags: provisioning
     vars:
       instance_type: t2.micro
-      security_group: jenkins
-      image: ami-90438cea
+      security_group: webserver
+      image: ami-cd0f5cb6
       region: us-east-1
       keypair: aws-lucas #substituir para a chave que for necessária
       count: 1
@@ -20,7 +20,7 @@
         local_action: 
           module: ec2_group
           name: "{{ security_group }}"
-          description: Security Group para o Jenkins
+          description: Security Group para o Webserver
           region: "{{ region }}"
           rules:
             - proto: tcp
@@ -28,7 +28,7 @@
               to_port: 22
               cidr_ip: 0.0.0.0/0
             - proto: tcp
-              from_port: 8080
+              from_port: 80
               to_port: 80
               cidr_ip: 0.0.0.0/0
           rules_egress:
@@ -51,7 +51,7 @@
         local_action: lineinfile 
                       dest="./hosts" 
                       regexp={{ item.public_ip }} 
-                      insertafter="[webserver]" line={{ item.public_ip }}
+                      insertafter="[service]" line={{ item.public_ip }}
         with_items: "{{ ec2.instances }}"
 
 
@@ -62,5 +62,4 @@
                       state=started
         with_items: "{{ ec2.instances }}"
 
-     # - include_role:
-     #   name: jenkins.yaml
+  - include: jenkins.yaml

@@ -1,0 +1,53 @@
+---
+  - name: Provisionamento de instancias ec2
+    hosts: service
+    become: no
+   # become_user: root
+   # become_method: su
+    connection: local
+    gather_facts: False
+    tags: provisioning
+
+    tasks:
+
+      - name: Instalando APPs
+        apt:
+          name: git
+          update_cache: yes
+          state: present      
+
+ 
+      - name: curl do source nodejs
+        get_url:
+          url:  https://deb.nodesource.com/setup_6.x
+          dest: /etc/ 
+
+      - name: Instalando APPs
+        apt:
+          name: nodejs
+          update_cache: yes
+          state: present
+
+      - name: Checking the user name
+        shell: /usr/bin/whoami
+        register: username
+
+      - name: debugging
+        debug: msg={{ username }} 
+
+      - name: criando diretorio
+        file:
+          path: /home/ubuntu/www
+          state: directory
+          owner: ubuntu
+          group: ubuntu
+
+      - name: clone repositorio
+        git:
+          repo: 'https://github.com/lucasvilelarodrigues/nodejs.org.git'
+          dest: /home/ubuntu/www
+          clone: yes
+
+      - name: instalando aplicação
+        command: cd /home/ubuntu/www/nodejs.org | npm install | npm start
+
